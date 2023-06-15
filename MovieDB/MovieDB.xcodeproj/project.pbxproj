@@ -14,6 +14,10 @@
 		88660DB22A3AFDE50029819C /* MovieDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88660DB12A3AFDE50029819C /* MovieDBUITests.swift */; };
 		88660DB42A3AFDE50029819C /* MovieDBUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88660DB32A3AFDE50029819C /* MovieDBUITestsLaunchTests.swift */; };
 		88D649C02A3AFFB20031AD55 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D649BF2A3AFFB20031AD55 /* MainCoordinator.swift */; };
+		88D649CB2A3B0B750031AD55 /* MoviePosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D649CA2A3B0B750031AD55 /* MoviePosterCollectionViewCell.swift */; };
+		88D649CE2A3B0D130031AD55 /* UIView+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D649CD2A3B0D130031AD55 /* UIView+Builder.swift */; };
+		88D649D02A3B116E0031AD55 /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D649CF2A3B116E0031AD55 /* UIStackViewExtensions.swift */; };
+		88D649D32A3B13F50031AD55 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88D649D22A3B13F50031AD55 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,9 @@
 		88660DB12A3AFDE50029819C /* MovieDBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBUITests.swift; sourceTree = "<group>"; };
 		88660DB32A3AFDE50029819C /* MovieDBUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		88D649BF2A3AFFB20031AD55 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		88D649CA2A3B0B750031AD55 /* MoviePosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterCollectionViewCell.swift; sourceTree = "<group>"; };
+		88D649CD2A3B0D130031AD55 /* UIView+Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Builder.swift"; sourceTree = "<group>"; };
+		88D649CF2A3B116E0031AD55 /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D649D32A3B13F50031AD55 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,11 +103,12 @@
 		88660D8F2A3AFDE40029819C /* MovieDB */ = {
 			isa = PBXGroup;
 			children = (
-				88660D9E2A3AFDE50029819C /* Info.plist */,
+				88D649CC2A3B0D020031AD55 /* Extensions */,
+				88D649C82A3B0AF20031AD55 /* Common */,
 				88660D902A3AFDE40029819C /* AppDelegate.swift */,
-				88660D992A3AFDE50029819C /* Assets.xcassets */,
 				88D649BE2A3AFF900031AD55 /* Helpers */,
 				88D649BD2A3AFF120031AD55 /* Modules */,
+				88D649C72A3B0AD40031AD55 /* Resources */,
 			);
 			path = MovieDB;
 			sourceTree = "<group>";
@@ -145,6 +154,40 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		88D649C72A3B0AD40031AD55 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88660D992A3AFDE50029819C /* Assets.xcassets */,
+				88660D9E2A3AFDE50029819C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88D649C82A3B0AF20031AD55 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				88D649C92A3B0AF70031AD55 /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		88D649C92A3B0AF70031AD55 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88D649CA2A3B0B750031AD55 /* MoviePosterCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		88D649CC2A3B0D020031AD55 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88D649CD2A3B0D130031AD55 /* UIView+Builder.swift */,
+				88D649CF2A3B116E0031AD55 /* UIStackViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,6 +204,9 @@
 			dependencies = (
 			);
 			name = MovieDB;
+			packageProductDependencies = (
+				88D649D22A3B13F50031AD55 /* SnapKit */,
+			);
 			productName = MovieDB;
 			productReference = 88660D8D2A3AFDE40029819C /* MovieDB.app */;
 			productType = "com.apple.product-type.application";
@@ -233,6 +279,9 @@
 				Base,
 			);
 			mainGroup = 88660D842A3AFDE40029819C;
+			packageReferences = (
+				88D649D12A3B13F50031AD55 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 88660D8E2A3AFDE40029819C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -276,7 +325,10 @@
 			files = (
 				88D649C02A3AFFB20031AD55 /* MainCoordinator.swift in Sources */,
 				88660D952A3AFDE40029819C /* MainViewController.swift in Sources */,
+				88D649CB2A3B0B750031AD55 /* MoviePosterCollectionViewCell.swift in Sources */,
 				88660D912A3AFDE40029819C /* AppDelegate.swift in Sources */,
+				88D649CE2A3B0D130031AD55 /* UIView+Builder.swift in Sources */,
+				88D649D02A3B116E0031AD55 /* UIStackViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +649,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88D649D12A3B13F50031AD55 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88D649D22A3B13F50031AD55 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88D649D12A3B13F50031AD55 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88660D852A3AFDE40029819C /* Project object */;
 }
