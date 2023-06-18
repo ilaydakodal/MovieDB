@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8823F85B2A3EF9A8008E23F5 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8823F85A2A3EF9A8008E23F5 /* UIImageView+Extensions.swift */; };
+		8823F85E2A3F0A69008E23F5 /* SerachBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8823F85D2A3F0A69008E23F5 /* SerachBarTextField.swift */; };
 		88660D912A3AFDE40029819C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88660D902A3AFDE40029819C /* AppDelegate.swift */; };
 		88660D952A3AFDE40029819C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88660D942A3AFDE40029819C /* MainViewController.swift */; };
 		88660D9A2A3AFDE50029819C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88660D992A3AFDE50029819C /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		8823F85A2A3EF9A8008E23F5 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		8823F85D2A3F0A69008E23F5 /* SerachBarTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachBarTextField.swift; sourceTree = "<group>"; };
 		88660D8D2A3AFDE40029819C /* MovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88660D902A3AFDE40029819C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88660D942A3AFDE40029819C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				88E4CB162A3C722200908D3C /* UIViewWithShadow.swift */,
+				8823F85D2A3F0A69008E23F5 /* SerachBarTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				8823F85B2A3EF9A8008E23F5 /* UIImageView+Extensions.swift in Sources */,
 				88D649D62A3B19700031AD55 /* MainCollectionView.swift in Sources */,
 				88D649C02A3AFFB20031AD55 /* MainCoordinator.swift in Sources */,
+				8823F85E2A3F0A69008E23F5 /* SerachBarTextField.swift in Sources */,
 				88660D952A3AFDE40029819C /* MainViewController.swift in Sources */,
 				88E4CB172A3C722200908D3C /* UIViewWithShadow.swift in Sources */,
 				88D649DC2A3B1D9B0031AD55 /* MainCollcetionViewSections.swift in Sources */,

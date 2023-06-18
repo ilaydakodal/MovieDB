@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol MainViewModeling {
+    func searchMovies(text: String, page: Int)
+}
+
 final class MainViewModel {
     private let networkService: NetworkManaging
     weak var view: MainViewControlable?
@@ -20,9 +24,10 @@ final class MainViewModel {
         self.networkService = networkService
     }
 
-    func searchMovies(query: String, page: Int = 1) {
+    func searchMovies(text: String, page: Int = 1) {
+        view?.didStartSearch()
         let endpoint = endoints.search.path
-        let queryParameters = ["query": query, "page": "\(page)"]
+        let queryParameters = ["query": text, "page": "\(page)"]
         let headers = [
           "accept": "application/json",
           "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNGQzOTljMTI4ZjJiOTJjYTY0ZjJlYzA4MzlmZTg3MiIsInN1YiI6IjY0OGFmNzkzNTU5ZDIyMDExYzRhOTEzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Wx2DX_CKf_RfWDNI0EiZ8Tvf_BOsMEfFWTPLiS_gz4k"
@@ -44,16 +49,17 @@ final class MainViewModel {
                     self.movies = []
                     self.errorMessage = "Failed to fetch movies. Error: \(error)" // TODO: Refactor error handling
                 }
+                self.view?.didEndSearch()
             }
     }
 
-    func loadMoreMovies(query: String) {
+    func loadMoreMovies(text: String) {
         guard currentPage < totalPages else {
             return
         }
 
         let nextPage = currentPage + 1
-        searchMovies(query: query, page: nextPage)
+        searchMovies(text: text, page: nextPage)
     }
 
     func applySnapshot() {

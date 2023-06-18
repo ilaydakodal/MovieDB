@@ -13,6 +13,9 @@ protocol MainCollectionViewDataSource: UICollectionViewDelegate {
 }
 
 final class MainCollectionView: UIView, UICollectionViewDelegate {
+    let pageSize = 20
+    var currentPage = 1
+
     // MARK: - Views
 
     private lazy var mainCollectionView: UICollectionView = {

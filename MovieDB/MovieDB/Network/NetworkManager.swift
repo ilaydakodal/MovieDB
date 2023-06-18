@@ -45,7 +45,6 @@ class NetworkManager: NetworkManaging {
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(.requestFailed))
-                print(">>>>>>>>>\(error)")
                 return
             }
 

@@ -10,6 +10,8 @@ import SnapKit
 
 protocol MainViewControlable: AnyObject {
     func applySnapshot(with movie: [MovieModel])
+    func didStartSearch()
+    func didEndSearch()
 }
 
 class MainViewController: UIViewController, MainViewControlable {
@@ -31,17 +33,22 @@ class MainViewController: UIViewController, MainViewControlable {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         setUpView()
-        viewModel?.searchMovies(query: "lion") // TODO: Remove after implementing search
     }
 
     private lazy var containerView: UIView = .build { view in
         view.backgroundColor = .clear
     }
 
+    private lazy var searchField: SearchBarTextField = .build { searchField in
+        searchField.tintColor = .black
+        searchField.delegate = self
+    }
+
     private lazy var collectionView: MainCollectionView = .build()
 
     private func setUpView() {
         view.addSubview(containerView)
+        containerView.addSubview(searchField)
         containerView.addSubview(collectionView)
         configureConstaints()
     }
@@ -51,12 +58,41 @@ class MainViewController: UIViewController, MainViewControlable {
             $0.edges.equalToSuperview().inset(16)
         }
 
+        searchField.snp.makeConstraints {
+            $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
+        }
+
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.top.equalTo(searchField.snp_bottomMargin).offset(16)
         }
     }
 
     func applySnapshot(with movie: [MovieModel]) {
         collectionView.applySnapshot(with: movie)
+    }
+}
+
+extension MainViewController: SearchBarTextFieldDelegate {
+    func searchBarTextFieldDidTapSearchButton(_ searchBarTextField: SearchBarTextField) {
+        searchBarTextField.makeTextFieldFirstResponder()
+    }
+
+    func searchTextChanged(text: String) {
+        searchField.showActivityIndicator()
+        viewModel?.searchMovies(text: text)
+    }
+
+    func searchBarTextField(_ searchBarTextField: SearchBarTextField, didChanged text: String) {
+        searchTextChanged(text: text)
+        viewModel?.searchMovies(text: text)
+    }
+
+    func didStartSearch() {
+        searchField.showActivityIndicator()
+    }
+
+    func didEndSearch() {
+        searchField.hideActivityIndicator()
     }
 }
