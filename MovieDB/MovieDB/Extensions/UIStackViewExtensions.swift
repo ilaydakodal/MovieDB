@@ -7,8 +7,8 @@
 
 import UIKit
 
-/// Helps to add multiple subviews in one line
 extension UIStackView {
+    /// Helps to add multiple subviews in one line
     @discardableResult
     public func addArrangedSubviews(_ views: [UIView]) -> Self {
         views.forEach(addArrangedSubview)

@@ -10,7 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Variables
-    
+
     var window: UIWindow?
     var coordinator: MainCoordinator?
 
@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        
+
         let navigationController = UINavigationController()
         coordinator = MainCoordinator(navigationController: navigationController)
         coordinator?.routeToMainPage()

@@ -36,7 +36,13 @@ class MainCoordinator: MainCoordinating {
     }
 
     func routeToMainPage() {
+        let networkService: NetworkManaging = NetworkManager()
+        let viewModel = MainViewModel(networkService: networkService)
         let mainViewController = MainViewController()
+
+        viewModel.view = mainViewController
+        mainViewController.viewModel = viewModel
+
         mainViewController.coordinator = self
         navigationController.pushViewController(mainViewController, animated: true)
     }
