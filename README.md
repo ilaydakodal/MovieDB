@@ -24,7 +24,7 @@
 
 1. Clone the repository:
 ```shell
-git clone https://github.com/your-username/MovieDB.git
+git clone https://git@github.com:ilaydakodal/MovieDB.git
 ```
 
 2. Open the project in Xcode:
