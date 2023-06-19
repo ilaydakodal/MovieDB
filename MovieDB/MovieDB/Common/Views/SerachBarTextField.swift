@@ -101,7 +101,6 @@ final class SearchBarTextField: UIView {
 
     private lazy var searchActivityIndicator: UIActivityIndicatorView = .build { activityIndicator in
         let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.style = .medium
         activityIndicator.color = .black
     }

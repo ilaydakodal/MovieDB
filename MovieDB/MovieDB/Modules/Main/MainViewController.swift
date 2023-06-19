@@ -8,15 +8,20 @@
 import UIKit
 import SnapKit
 
+// MARK: - MainViewControlable
+
 protocol MainViewControlable: AnyObject {
     func applySnapshot(with movie: [MovieModel])
     func didStartSearch()
     func didEndSearch()
 }
 
-class MainViewController: UIViewController, MainViewControlable {
+final class MainViewController: UIViewController, MainViewControlable {
+
     // MARK: - Properties
+
     weak var coordinator: MainCoordinator?
+    weak var delegate: MoviePosterCollectionViewDelegate?
     var viewModel: MainViewModel?
 
     // MARK: - Initialisers
@@ -35,6 +40,8 @@ class MainViewController: UIViewController, MainViewControlable {
         setUpView()
     }
 
+    // MARK: - View
+
     private lazy var containerView: UIView = .build { view in
         view.backgroundColor = .clear
     }
@@ -44,7 +51,15 @@ class MainViewController: UIViewController, MainViewControlable {
         searchField.delegate = self
     }
 
-    private lazy var collectionView: MainCollectionView = .build()
+    private lazy var collectionView: MainCollectionView = .build { collectionView in
+        collectionView.delegate = self.delegate
+    }
+
+    func applySnapshot(with movie: [MovieModel]) {
+        collectionView.applySnapshot(with: movie)
+    }
+
+    // MARK: private setUp
 
     private func setUpView() {
         view.addSubview(containerView)
@@ -67,11 +82,9 @@ class MainViewController: UIViewController, MainViewControlable {
             $0.top.equalTo(searchField.snp_bottomMargin).offset(16)
         }
     }
-
-    func applySnapshot(with movie: [MovieModel]) {
-        collectionView.applySnapshot(with: movie)
-    }
 }
+
+// MARK: - SearchBarTextFieldDelegate
 
 extension MainViewController: SearchBarTextFieldDelegate {
     func searchBarTextFieldDidTapSearchButton(_ searchBarTextField: SearchBarTextField) {
@@ -94,5 +107,18 @@ extension MainViewController: SearchBarTextFieldDelegate {
 
     func didEndSearch() {
         searchField.hideActivityIndicator()
+    }
+}
+
+// MARK: - MoviePosterCollectionViewDelegate
+
+extension MainViewController: MoviePosterCollectionViewDelegate {
+    func mainCollectionViewDidSelectItem(_ collectionView: UICollectionView, indexPath: IndexPath) {
+        guard let selectedMovie = viewModel?.movies[indexPath.item] else {
+            return
+        }
+
+        viewModel?.fetchMovieDetail(id: selectedMovie.id)
+        coordinator?.routeToDetail(with: selectedMovie) //TODO: Use presentation model
     }
 }

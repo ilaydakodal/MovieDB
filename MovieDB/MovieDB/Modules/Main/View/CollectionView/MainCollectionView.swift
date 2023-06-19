@@ -12,11 +12,14 @@ protocol MainCollectionViewDataSource: UICollectionViewDelegate {
     func applySnapshot(with movie: [MovieModel])
 }
 
-final class MainCollectionView: UIView, UICollectionViewDelegate {
-    let pageSize = 20
-    var currentPage = 1
+protocol MoviePosterCollectionViewDelegate: AnyObject {
+    func mainCollectionViewDidSelectItem(_ collectionView: UICollectionView, indexPath: IndexPath)
+}
 
+final class MainCollectionView: UIView {
     // MARK: - Views
+
+    weak var delegate: MoviePosterCollectionViewDelegate?
 
     private lazy var mainCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
@@ -105,5 +108,9 @@ extension MainCollectionView: MainCollectionViewDataSource {
         snapshot.appendSections([.verticalListSection])
         snapshot.appendItems(movie, toSection: .verticalListSection)
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.mainCollectionViewDidSelectItem(collectionView, indexPath: indexPath)
     }
 }
