@@ -19,7 +19,8 @@ final class MainCompositionalLayoutMaker: MainCompositionalLayoutMaking {
     func makeCompositionalLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout(section: makeSectionn())
     }
-// TODO: Fix Constants
+
+    // TODO: Fix Constants
     private func makeSectionn() -> NSCollectionLayoutSection {
         let item = makeItem()
         let group = makeGroup(item: item)

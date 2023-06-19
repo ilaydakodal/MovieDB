@@ -11,8 +11,8 @@ import UIKit
 
 /// A shadowed interface for UIView. Shadow position can be changed.
 open class UIViewWithShadow: UIView {
-
-    // MARK: Lifecycle
+ 
+    // MARK: - Lifecycle
 
     override public init(frame: CGRect) {
         super.init(frame: frame)

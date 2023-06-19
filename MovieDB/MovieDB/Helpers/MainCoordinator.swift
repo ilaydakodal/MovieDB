@@ -11,6 +11,7 @@ protocol MainCoordinating {
     var navigationController: UINavigationController { get set }
 
     func routeToMainPage()
+    func routeToDetail(with movie: MovieModel)
 }
 
 /// `Main Coordinator` is a navigation layer that injects `network layer` and `viewModels` and `userDefaultsManager` to the views.
@@ -39,11 +40,23 @@ class MainCoordinator: MainCoordinating {
         let networkService: NetworkManaging = NetworkManager()
         let viewModel = MainViewModel(networkService: networkService)
         let mainViewController = MainViewController()
+      //  let delegate = MoviePosterCollectionViewDelegate()
 
         viewModel.view = mainViewController
         mainViewController.viewModel = viewModel
-
         mainViewController.coordinator = self
+        mainViewController.delegate = mainViewController
+       // mainViewController.collectionView.delegate = delegate
         navigationController.pushViewController(mainViewController, animated: true)
+    }
+
+    func routeToDetail(with movie: MovieModel) {
+        let detailViewController = DetailViewController(movie: movie)
+        detailViewController.coordinator = self
+        navigationController.modalPresentationStyle = .pageSheet
+        if let sheet = detailViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        navigationController.present(detailViewController, animated: true)
     }
 }
